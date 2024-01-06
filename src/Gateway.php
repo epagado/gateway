@@ -8,6 +8,7 @@ class InvalidOptionException extends Exception {}
 class InvalidEnvironmentException extends Exception {}
 class FieldsException extends Exception {}
 
+use Epagado\Signature;
 
 class Gateway
 {
