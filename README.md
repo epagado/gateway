@@ -22,11 +22,11 @@ $config = require (__DIR__.'/config.local.php');
 
 # Cargamos la clase con los parámetros base
 
-$TPV = new Epagado\Gateway($config);
+$EP = new Epagado\Gateway($config);
 
 # Indicamos los campos para el pedido
 
-$TPV->setFormHiddens(array(
+$EP->setFormHiddens(array(
     'MerchantData' => 'Televisor de 50 pulgadas',
     'Order' => '012121323',
     'Amount' => '568,25',
@@ -37,7 +37,7 @@ $TPV->setFormHiddens(array(
 
 # Imprimimos el pedido el formulario y redirigimos a la TPV
 
-echo '<form action="'.$TPV->getPath().'" method="post">'.$TPV->getFormHiddens().'</form>';
+echo '<form action="'.$EP->getPath().'" method="post">'.$EP->getFormHiddens().'</form>';
 
 die('<script>document.forms[0].submit();</script>');
 ```
@@ -57,16 +57,16 @@ $config = require (__DIR__.'/config.local.php');
 
 # Cargamos la clase con los parámetros base
 
-$TPV = new Epagado\Gateway($config);
+$EP = new Epagado\Gateway($config);
 
 # Realizamos la comprobación de la transacción
 
 try {
-    $datos = $TPV->checkTransaction($_POST);
+    $datos = $EP->checkTransaction($_POST);
     $success = true;
     $message = '';
 } catch (Exception $e) {
-    $datos = $TPV->getTransactionParameters($_POST);
+    $datos = $EP->getTransactionParameters($_POST);
     $success = false;
     $message = $e->getMessage();
 }
