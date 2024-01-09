@@ -24,7 +24,6 @@ class Gateway
     protected $o_required = array(
         'MerchantCode',
         'Terminal',
-        'Order',
         'Environment',
         'Key',
         'SignatureVersion'
