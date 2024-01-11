@@ -40,8 +40,8 @@ class Gateway
 
     protected $environment = '';
     protected $environments = array(
-        'test' => 'https://gateway-t.epagado.net/sis',
-        'real' => 'https://gateway.epagado.net/sis'
+        'test' => 'https://gateway-t.epagado.net',
+        'real' => 'https://gateway.epagado.net'
     );
 
     protected $values = array();
@@ -98,9 +98,14 @@ class Gateway
         return $this;
     }
 
-    public function getPath($path = '/realizarPago')
+    public function getPath($path = '/sis/realizarPago')
     {
-        return $this->environment.$path;
+        $lang = 'es';
+        if (isset($this->values[$this->option_prefix.'ConsumerLanguage'])) {
+            $lang = $this->values[$this->option_prefix.'ConsumerLanguage'];
+        }
+
+        return $this->environment."/{$lang}".$path;
     }
 
     public function getEnvironments($key = null)
