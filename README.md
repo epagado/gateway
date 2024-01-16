@@ -27,7 +27,6 @@ $EP = new Epagado\Gateway($config);
 # Indicamos los campos para el pedido
 
 $EP->setFormHiddens(array(
-    'MerchantData' => 'Televisor de 50 pulgadas',
     'Order' => '012121323',
     'Amount' => '568,25',
     'UrlOK' => 'http://dominio.com/direccion-todo-correcto/',
@@ -84,7 +83,7 @@ $Db->update(array(
         'post' => json_encode($_POST)
     ),
     'conditions' => array(
-        'id' => $datos['Ds_Order']
+        'id' => $datos['EP_Order']
     )
 ));
 
