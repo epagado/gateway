@@ -210,16 +210,10 @@ class Gateway
 
     public function getOrder($order)
     {
-        if (preg_match('/^[0-9]+$/', $order)) {
-            $order = sprintf('%012s', $order);
-        }
-
         $len = strlen($order);
 
-        if (($len < 4) || ($len > 12)) {
-            throw new InvalidOrderException('Order code must have more than 4 digits and less than 12');
-        } elseif (!preg_match('/^[0-9]{4}[0-9a-zA-Z]{0,8}$/', $order)) {
-            throw new InvalidOrderException('First four order digits must be numbers and then only are allowed numbers and letters');
+        if (($len < 4) || ($len > 24)) {
+            throw new InvalidOrderException('Order code must have more than 4 digits and less than 24');
         }
 
         return $order;
